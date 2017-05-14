@@ -14,3 +14,10 @@
     }
   }
 }
+.pagination-previous, .pagination-next{
+  &.disabled{
+    -webkit-filter: opacity(.5);
+    color: #EEEEEE;
+    pointer-events: none;
+  }
+}

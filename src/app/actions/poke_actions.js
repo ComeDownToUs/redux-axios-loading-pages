@@ -25,24 +25,20 @@ export const pokeErrorHandler = (dispatch, error, type) => {
       type: type,
       payload: errorMessage
     });
-    logoutUser();
-  } else {
-    dispatch({
-      type: type,
-      payload: errorMessage
-    });
   }
 };
 
-export const getOnePokemon = ({ name }) => {
+export const getOnePokemon = (name) => {
   return function(dispatch) {
     dispatch({type: GETTING});
     axios.get(`${API_URL}/pokemon/${name}`)
     .then(response => {
       dispatch({
         type:GOT_POKE,
-        pokename: response.name})
-      browserHistory.push(`/pokemon/${name}`);
+        pokename: response.data.name,
+        pokedata: response.data
+      });
+      //browserHistory.push(`/pokemon/${name}`);
     })
     .catch((error) => {
       pokeErrorHandler(dispatch, error.response, POKE_ERROR);
@@ -50,17 +46,22 @@ export const getOnePokemon = ({ name }) => {
   };
 };
 
-export const getPokemon = ({ index }) => {
+export const getPokemon = (index ) => {
   return function(dispatch) {
-    console.log(index);
     dispatch({type: GETTING});
     axios.get(`${API_URL}/pokemon`,
         {params: { offset: index}})
     .then(response => {
       dispatch({
         type:GOT_POKES,
-        pokelist: response,
-        pokecount: response.count})
+        pokedata: response,
+        pokelist: response.data.results,
+        pokecount: response.data.count,
+        pokeprev: response.data.prev,
+        pokenext: (response.data.next),
+        pokeindex: (response.data.next.split('=')[1]/20)
+        //HACKY AS ALL HELL
+      });
       //browserHistory.push('/pokemon');
     })
     .catch((error) => {
