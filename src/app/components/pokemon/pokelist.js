@@ -15,32 +15,41 @@ class PageNumbers extends Component{
 
     return (
       <div>
-        <span className='pagination'> Page {pokeindex} of {pokecount}
-          <br/></span>
-        <nav className="pagination">
+        <nav className="pagination is-right">
           <a
-            className={`pagination-previous
+            className={`pagination-previous button
               ${(pokeindex > 1)? '':'disabled'}
-              ${(isFetching)? ' disable':''}`}
+              ${(isFetching)? ' disabled':''}`}
             onClick={() => onClick((pokeindex-2)*20)}>Previous</a>
           <a
-            className={`pagination-next
+            className={`pagination-next button
               ${(pokeindex < pokecount-1)? '':''}
               ${(isFetching)? ' disabled':''}`}
             onClick={() => onClick((pokeindex)*20)}
             >Next page </a>
+          <ul className="pagination-list">
+            <li>
+            <a
+              className={`pagination-link button
+                ${(isFetching)? ' disabled is-loading':''}`}>
+                Page {pokeindex} of {pokecount}
+              </a>
+            </li>
+          </ul>
         </nav>
       </div>);
   }
 };
 
-const pokeCard = ({name, isFetching}) => (
+const pokeCard = ({name}, isFetching) => (
   <a href={'pokemon/'+name}
     className={`${(isFetching)? ' is-loading':''}`}
     >
     <div className='hero'>
       <div className='hero-body'>
-        <p className='pokename'>{name}</p>
+        <p className='pokename'>
+          {`${(isFetching)? '...':name}`}
+        </p>
       </div>
     </div>
   </a>
@@ -77,10 +86,9 @@ class PokeList extends Component {
     };
     const _list = this.props.pokelist.map((pokemon, key) => (
         <div className={`column is-3`}  key={key}>
-          {(isFetching?'Loading animation here': pokeCard(pokemon, isFetching))}
+          {pokeCard(pokemon, isFetching)}
         </div>
       ));
-
     return (
         <PokeFrame>
           <PageNumbers
@@ -117,7 +125,8 @@ const mapStateToProps = (state) => ({
   pokelist: state.poke.pokelist,
   pokedata: state.poke.pokedata,
   pokeindex: state.poke.pokeindex,
-  pokecount: state.poke.pokecount
+  pokecount: state.poke.pokecount,
+  isFetching: state.poke.isFetching
 });
 
 export default connect(mapStateToProps, { getPokemon})(PokeList);

@@ -10,7 +10,7 @@ import Pokemon from './components/pokemon/pokemon';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
+    <IndexRoute component={PokeList} />
     <Route path='pokelist' component={PokeList} />
     <Route path='pokemon/:id' component={Pokemon} />
     <Route path="*" component={NotFoundPage} />
