@@ -1,0 +1,16 @@
+.dashboard{
+  background-color: #04B192;
+  height: 100vh;
+
+  .nav{
+    position: fixed;
+    width: 100%;
+  }
+  .container{
+    .column{
+      height: calc(90vh - 68px);
+      margin-top: 32px;
+      background-color: #CCFFF6;
+    }
+  }
+}
