@@ -36,7 +36,8 @@ export const getOnePokemon = (name) => {
       dispatch({
         type:GOT_POKE,
         pokename: response.data.name,
-        pokedata: response.data
+        pokedata: response.data,
+        pokestats: response.data.stats
       });
       //browserHistory.push(`/pokemon/${name}`);
     })

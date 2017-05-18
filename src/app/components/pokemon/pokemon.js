@@ -17,7 +17,7 @@ class Pokemon extends Component {
     return (
       <PokeFrame>
         <div> Name {this.props.pokename}</div>
-        <div> Types: {this.props.pokedata}
+        <div> Stats:
 
         </div>
       </PokeFrame>
@@ -36,7 +36,8 @@ const mapStateToProps = (state) => ({
   errorMessage: state.poke.error,
   message: state.poke.message,
   pokename: state.poke.pokename,
-  pokedata: state.poke.pokedata
+  pokedata: state.poke.pokedata,
+  pokestats: state.poke.pokestats
 });
 
 export default connect(mapStateToProps, {getOnePokemon})(Pokemon);

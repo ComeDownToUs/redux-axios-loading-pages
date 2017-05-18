@@ -16,6 +16,7 @@ const PokeReducer = (state = INITIAL_STATE, action) => {
       return { ...state,
         pokedata: action.pokedata,
         pokename: action.pokename,
+        pokestats: action.pokestats,
         isFetching: false};
     case GOT_POKES:
       return { ...state,
