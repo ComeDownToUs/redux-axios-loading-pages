@@ -1,6 +1,7 @@
 To run currently:
 `npm run dev`
-Initial pieces largely built alongside Joshua Slate's redux tutorial
+
+
 
 ### TODOs
 - TESTING!
@@ -17,6 +18,9 @@ Initial pieces largely built alongside Joshua Slate's redux tutorial
 ### BROKEN
 - Final page of list produces an error
 - isFetching isn't processing through components
+
+
+Initial pieces largely built alongside Joshua Slate's redux tutorial
 
 
 Comments labelled `<<TODO>>` in code will explicitly reference incomplete areas
